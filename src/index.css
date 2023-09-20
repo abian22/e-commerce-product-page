@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "regular";
+  src: url("./assets/KumbhSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("./assets/KumbhSans-Bold.ttf");
+}

@@ -7,14 +7,14 @@ import { Box } from "@mui/material";
 function PhotoContainer() {
   return (
     <>
-      <Card sx={{ marginTop: "50px" }}>
+      <Card sx={{ marginTop: "50px", display:"flex"}}>
           <CardMedia
             sx={{ height: "600px", width: "600px" }}
             image="/images/image-product-1.jpg"
           />
           <Box sx={{   
               position: "absolute",
-              bottom: "220px",
+              marginTop:"270px",
               padding:"18px",
               borderRadius:"40px",
               backgroundColor:"white",
@@ -30,7 +30,7 @@ function PhotoContainer() {
           </Box>
           <Box sx={{   
               position: "absolute",
-              bottom: "220px",
+              marginTop: "270px",
               padding:"18px",
               borderRadius:"40px",
               backgroundColor:"white",

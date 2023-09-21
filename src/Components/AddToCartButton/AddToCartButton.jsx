@@ -12,9 +12,15 @@ function AddToCartButton() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "20px",
+            marginTop: {xs:"20px", md:"80px"},
             marginLeft: "30px",
             color: "white",
+            width:{xs:"auto",md:"300px"},
+            position:{md:"relative"},
+            right:{md:"0px"},
+            bottom:{md:"155px"},
+            marginRight:"70px",
+            left:{md:"750px"}
             
           }}
         >

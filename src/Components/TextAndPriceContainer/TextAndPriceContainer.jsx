@@ -38,7 +38,8 @@ function TextAndPriceContainer() {
             fontFamily: "regular",
             color: "grey",
             lineHeight: "30px",
-            maxWidth:"660px"
+            maxWidth:"660px",
+            // minWidth:"600px"
           }}
         >
           These low-profile sneakers are your perfect casual wear companion.

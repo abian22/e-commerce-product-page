@@ -14,7 +14,7 @@ function App() {
     <>
       <Grid>
         <Header />
-        <Box sx={{ display: {md:'flex'}, flexDirection: {md:'row'} }}>
+        <Box sx={{ display: {lg:'flex'}, flexDirection: {lg:'row'} }}>
         <PhotoContainer />
         <TextAndPriceContainer />
         </Box>

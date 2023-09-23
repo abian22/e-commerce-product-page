@@ -12,15 +12,15 @@ function AddToCartButton() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: {xs:"20px", md:"80px"},
-            marginLeft: {md:"30px"},
+            marginTop: {xs:"20px", lg:"80px"},
+            marginLeft: {md:"170px", lg:"70px"},
             color: "white",
-            width:{xs:"auto",md:"300px"},
-            position:{md:"relative"},
-            right:{md:"0px"},
-            bottom:{md:"155px"},
-            marginRight:{md:"70px"},
-            left:{md:"750px"},
+            width:{xs:"auto", md:"700px",lg:"300px"},
+            position:{lg:"relative"},
+            right:{lg:"0px"},
+            bottom:{lg:"155px"},
+            marginRight:{lg:"70px"},
+            left:{lg:"900px"},
             boxShadow: "0px 30px 20px hsl(25, 100%, 94%)" 
             
           }}

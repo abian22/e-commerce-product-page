@@ -100,8 +100,8 @@ function TextAndPriceContainer() {
               textDecoration: "line-through",
               display: "flex",
               marginLeft:{ lg:"-180px"},
-              position: { xs: "relative" }, // Ajuste para pantallas xs
-              top: { xs: "0", lg: "50px" }, // Ajuste para pantallas xs
+              position: { xs: "relative" }, 
+              top: { xs: "0", lg: "50px" }, 
             }}
           >
             $250.00

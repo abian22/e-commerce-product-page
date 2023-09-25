@@ -1,25 +1,20 @@
+import React, { useEffect } from "react";
 import CardMedia from "@mui/material/CardMedia";
-import image1 from "/images/image-product-1.jpg";
-import image2 from "/images/image-product-2.jpg";
-import image3 from "/images/image-product-3.jpg";
-import image4 from "/images/image-product-4.jpg";
 import image1Mini from "/images/image-product-1.jpg";
 import image2Mini from "/images/image-product-2-thumbnail.jpg";
 import image3Mini from "/images/image-product-3-thumbnail.jpg";
 import image4Mini from "/images/image-product-4-thumbnail.jpg";
 import { Box, useMediaQuery } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./LightBox.css";
 
-function LightBox({ selectedImage, closeLightBox }) {
-  const smallPhotos = [image1Mini, image2Mini, image3Mini, image4Mini];
-  const bigPhotos = [image1, image2, image3, image4];
-//   const [clickedPhoto, setClickedPhoto] = useState(false);
-  const [focusedPhotoIndex, setFocusedPhotoIndex] = useState(0);
+function LightBox({ selectedImageIndex, closeLightBox, bigPhotos }) {
+  const [focusedPhotoIndex, setFocusedPhotoIndex] =useState(selectedImageIndex);
   const [close, setClose] = useState(false);
+  const [clickedPhotoIndex, setClickedPhotoIndex] = useState(selectedImageIndex); // Cambiado a clickedPhotoIndex
+  const smallPhotos = [image1Mini, image2Mini, image3Mini, image4Mini];
 
   const isMdScreenOrSmaller = useMediaQuery("(max-width: 1200px)");
-
 
   useEffect(() => {
     if (isMdScreenOrSmaller) {
@@ -27,138 +22,131 @@ function LightBox({ selectedImage, closeLightBox }) {
     }
   }, [isMdScreenOrSmaller, closeLightBox]);
 
-  function nextPhoto() {
+  const nextPhoto = () => {
     if (focusedPhotoIndex < bigPhotos.length - 1) {
-      return setFocusedPhotoIndex(focusedPhotoIndex + 1);
+      setFocusedPhotoIndex(focusedPhotoIndex + 1);
+      setClickedPhotoIndex(focusedPhotoIndex + 1); // Cambiado a clickedPhotoIndex
     }
-  }
+  };
 
-  function previousPhoto() {
+  const previousPhoto = () => {
     if (focusedPhotoIndex > 0) {
-      return setFocusedPhotoIndex(focusedPhotoIndex - 1);
+      setFocusedPhotoIndex(focusedPhotoIndex - 1);
+      setClickedPhotoIndex(focusedPhotoIndex - 1); // Cambiado a clickedPhotoIndex
     }
-  }
-
-  function handlePhotos() {
-    return bigPhotos[focusedPhotoIndex];
-  }
+  };
 
   function handleSmallPhotoClick(index) {
-    // setClickedPhoto(true);
     setFocusedPhotoIndex(index);
+    setClickedPhotoIndex(index); // Cambiado a clickedPhotoIndex
   }
 
-  function handleCloseLightBox() {
-    closeLightBox(true)
-     setClose(true);
-  }
+  const handleCloseLightBox = () => {
+    closeLightBox();
+    setClose(true);
+  };
 
   return (
     <>
       <Box
         className="centered-container"
-        sx={{ display: close === true ? "none" : "relative" }}
+        style={{ display: close ? "none" : "relative" }}
       >
         <Box
-          sx={{
+          style={{
             marginTop: "80px",
             display: "flex",
             flexDirection: "column",
             maxWidth: "650px",
             visibility: {
               xs: "hidden",
-              lg: close === true ? "hidden" : "visible",
+              lg: close ? "hidden" : "visible",
             },
           }}
         >
           <CardMedia
-            sx={{
+            style={{
               width: "20px",
               height: "20px",
-              marginLeft: "730px",
-              marginBottom: "10px",
+              marginLeft: "530px",
+              marginBottom: "20px",
               cursor: "pointer",
             }}
             onClick={handleCloseLightBox}
             image="/images/icon-close.svg"
           />
           <CardMedia
-            sx={{
+            style={{
               height: "550px",
               width: "550px",
               borderRadius: "10px",
               marginLeft: { lg: "200px" },
             }}
-            image={handlePhotos(focusedPhotoIndex)}
+            image={bigPhotos[focusedPhotoIndex]}
           />
           <Box
-            sx={{
+            style={{
               flexDirection: "row",
               display: "flex",
-              marginLeft: "170px",
+              right: "25px",
               marginTop: "20px",
               visibility: "visible",
               position: "relative",
             }}
           >
-            {smallPhotos.map((p, index) => {
-              return (
-                <>
-                  <Box
-                    key={index}
-                    sx={{
-                      visibility: {
-                        xs: "hidden",
-                        lg: setClose === true ? "hidden" : "visible",
-                      },
-                    }}
-                    onClick={() => {
-                        handleSmallPhotoClick(index);
-                        setFocusedPhotoIndex(index); 
-                      }}
-                  >
-                    <CardMedia
-                      sx={{
-                        height: "108px",
-                        width: "108px",
-                        borderRadius: "5px",
-                        marginLeft: "35px",
-                        cursor: "pointer",
-                        visibility: {
-                          xs: "hidden",
-                          lg: close === true ? "hidden" : "visible",
-                        },
-                        border:
-                          focusedPhotoIndex === index 
-                            ? "2px solid orange"
-                            : "none",
-                        opacity:
-                          focusedPhotoIndex === index 
-                            ? "0.5"
-                            : "none",
-                      }}
-                      image={p}
-                    />
-                  </Box>
-                </>
-              );
-            })}
+            {smallPhotos.map((p, index) => (
+              <Box
+                key={index}
+                style={{
+                  visibility: {
+                    xs: "hidden",
+                    lg: close ? "hidden" : "visible",
+                  },
+                }}
+                onClick={() => {
+                  handleSmallPhotoClick(index);
+                }}
+              >
+                <CardMedia
+                  style={{
+                    height: "108px",
+                    width: "108px",
+                    borderRadius: "5px",
+                    marginLeft: "35px",
+                    cursor: "pointer",
+                    visibility: {
+                      xs: "hidden",
+                      lg: close ? "hidden" : "visible",
+                    },
+
+                    border:
+                      focusedPhotoIndex === index && index === clickedPhotoIndex
+                        ? "2px solid orange"
+                        : "none",
+                    opacity:
+                      focusedPhotoIndex === index && index === clickedPhotoIndex
+                        ? "0.5"
+                        : "1",
+                  }}
+                  image={p}
+                />
+              </Box>
+            ))}
           </Box>
           <Box
-            sx={{
+            style={{
               position: "absolute",
-              marginTop: "270px",
+              marginTop: "255px",
               padding: "18px",
               borderRadius: "40px",
               backgroundColor: "white",
-              marginLeft: "220px",
+              marginLeft: "20px",
               cursor: "pointer",
             }}
             onClick={previousPhoto}
-            
           >
             <CardMedia
-              sx={{
+              style={{
                 height: "18px",
                 width: "18px",
               }}
@@ -166,19 +154,19 @@ function LightBox({ selectedImage, closeLightBox }) {
             />
           </Box>
           <Box
-            sx={{
+            style={{
               position: "absolute",
               marginTop: "250px",
               padding: "18px",
               borderRadius: "40px",
               backgroundColor: "white",
-              marginLeft: "670px",
+              marginLeft: "470px",
               cursor: "pointer",
             }}
             onClick={nextPhoto}
           >
             <CardMedia
-              sx={{ height: "18px", width: "18px" }}
+              style={{ height: "18px", width: "18px" }}
               image="/images/icon-next.svg"
             />
           </Box>

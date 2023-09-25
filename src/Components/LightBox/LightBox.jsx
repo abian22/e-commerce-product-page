@@ -7,8 +7,8 @@ import image1Mini from "/images/image-product-1.jpg";
 import image2Mini from "/images/image-product-2-thumbnail.jpg";
 import image3Mini from "/images/image-product-3-thumbnail.jpg";
 import image4Mini from "/images/image-product-4-thumbnail.jpg";
-import { Box } from "@mui/material";
-import { useState } from "react";
+import { Box, useMediaQuery } from "@mui/material";
+import { useState, useEffect } from "react";
 import "./LightBox.css";
 
 function LightBox({ selectedImage, closeLightBox }) {
@@ -17,6 +17,15 @@ function LightBox({ selectedImage, closeLightBox }) {
 //   const [clickedPhoto, setClickedPhoto] = useState(false);
   const [focusedPhotoIndex, setFocusedPhotoIndex] = useState(0);
   const [close, setClose] = useState(false);
+
+  const isMdScreenOrSmaller = useMediaQuery("(max-width: 1200px)");
+
+
+  useEffect(() => {
+    if (isMdScreenOrSmaller) {
+      closeLightBox();
+    }
+  }, [isMdScreenOrSmaller, closeLightBox]);
 
   function nextPhoto() {
     if (focusedPhotoIndex < bigPhotos.length - 1) {
@@ -41,6 +50,7 @@ function LightBox({ selectedImage, closeLightBox }) {
 
   function handleCloseLightBox() {
     closeLightBox(true)
+     setClose(true);
   }
 
   return (

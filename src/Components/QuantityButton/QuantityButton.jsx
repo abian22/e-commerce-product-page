@@ -30,7 +30,7 @@ function QuantityButton() {
         }}
       >
         <CardMedia
-           image="../../../public/images/icon-minus.svg"
+           image="/images/icon-minus.svg"
           sx={{ width: "18px", height: "6px", marginLeft: "30px", cursor:"pointer"}}
           onClick={lessQuantity}
         />
@@ -38,7 +38,7 @@ function QuantityButton() {
           {quantity}
         </Typography>
         <CardMedia
-           image="../../../public/images/icon-plus.svg"
+           image="/images/icon-plus.svg"
           sx={{ width: "18px", height: "16px", marginRight: "30px", cursor:"pointer"}}
           onClick={plusQuantity}
         />

@@ -1,13 +1,13 @@
 import React from "react";
 import CardMedia from "@mui/material/CardMedia";
-import image1 from "../../../public/images/image-product-1.jpg"
-import image2 from "../../../public/images/image-product-2.jpg";
-import image3 from "../../../public/images/image-product-3.jpg";
-import image4 from "../../../public/images/image-product-4.jpg";
-import image1Mini from "../../../public/images/image-product-1.jpg";
-import image2Mini from "../../../public/images/image-product-2-thumbnail.jpg";
-import image3Mini from "../../../public/images/image-product-3-thumbnail.jpg";
-import image4Mini from "../../../public/images/image-product-4-thumbnail.jpg";
+import image1 from "/images/image-product-1.jpg"
+import image2 from "/images/image-product-2.jpg";
+import image3 from "/images/image-product-3.jpg";
+import image4 from "/images/image-product-4.jpg";
+import image1Mini from "/images/image-product-1.jpg";
+import image2Mini from "/images/image-product-2-thumbnail.jpg";
+import image3Mini from "/images/image-product-3-thumbnail.jpg";
+import image4Mini from "/images/image-product-4-thumbnail.jpg";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import LightBox from "../LightBox/LightBox";
@@ -120,7 +120,7 @@ function PhotoContainer() {
               height: "18px",
               width: "18px",
             }}
-            image="../../../public/images/icon-previous.svg"
+            image="/images/icon-previous.svg"
           />
         </Box>
         <Box
@@ -138,7 +138,7 @@ function PhotoContainer() {
         >
           <CardMedia
             sx={{ height: "18px", width: "18px" }}
-            image="../../../public/images/icon-next.svg"
+            image="/images/icon-next.svg"
           />
         </Box>
       </Box>

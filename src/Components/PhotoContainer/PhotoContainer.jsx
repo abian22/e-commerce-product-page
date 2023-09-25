@@ -10,28 +10,37 @@ import image3Mini from "../../../images/image-product-3-thumbnail.jpg";
 import image4Mini from "../../../images/image-product-4-thumbnail.jpg";
 import { Box } from "@mui/material";
 import { useState } from "react";
+import LightBox from "../LightBox/LightBox";
 
 function PhotoContainer() {
   const smallPhotos = [image1Mini, image2Mini, image3Mini, image4Mini];
   const bigPhotos = [image1, image2, image3, image4];
-  const [position, setPosition] = useState(0);
+  const [clickedPhoto, setClickedPhoto] = useState(false);
+  const [focusedPhotoIndex, setFocusedPhotoIndex] = useState(0);
+  const [showLightBox, setShowLightBox] = useState(false);
 
-  function nextPosition() {
-    if (position < bigPhotos.length - 1) {
-      return setPosition(position + 1);
+  function nextPhoto() {
+    if (focusedPhotoIndex < bigPhotos.length - 1) {
+      return setFocusedPhotoIndex(focusedPhotoIndex + 1);
     }
-    return position;
   }
 
-  function previousPosition() {
-    if (position > 0) {
-      return setPosition(position - 1);
+  function previousPhoto() {
+    if (focusedPhotoIndex > 0) {
+      return setFocusedPhotoIndex(focusedPhotoIndex - 1);
     }
-    return position;
   }
 
   function handlePhotos() {
-    return bigPhotos[position];
+    return bigPhotos[focusedPhotoIndex];
+  }
+
+  function handleSmallPhotoClick(index) {
+    setClickedPhoto(true);
+    setFocusedPhotoIndex(index);
+  }
+  function handleCardMediaClick() {
+    setShowLightBox(true);
   }
 
   return (
@@ -42,7 +51,7 @@ function PhotoContainer() {
           display: "flex",
           flexDirection: "column",
           maxWidth: "650px",
-          marginLeft:{md:"220px", lg:"0px"}
+          marginLeft: { md: "220px", lg: "0px" },
         }}
       >
         <CardMedia
@@ -51,8 +60,10 @@ function PhotoContainer() {
             width: { xs: "600px", lg: "450px" },
             borderRadius: "10px",
             marginLeft: { lg: "200px" },
+            cursor: "pointer",
           }}
-          image={handlePhotos()}
+          image={handlePhotos(focusedPhotoIndex)}
+          onClick={handleCardMediaClick}
         />
         <Box
           sx={{
@@ -64,16 +75,25 @@ function PhotoContainer() {
             position: { xs: "absolute", lg: "relative" },
           }}
         >
-          {smallPhotos.map((p) => {
+          {smallPhotos.map((p, index) => {
             return (
               <>
-                <Box>
+                <Box key={index} onClick={() => handleSmallPhotoClick(index)}>
                   <CardMedia
                     sx={{
                       height: "85px",
                       width: "85px",
                       borderRadius: "5px",
                       marginLeft: "35px",
+                      cursor: "pointer",
+                      border:
+                        focusedPhotoIndex === index && clickedPhoto === true
+                          ? "2px solid orange"
+                          : "none",
+                      opacity:
+                        focusedPhotoIndex === index && clickedPhoto === true
+                          ? "0.5"
+                          : "none",
                     }}
                     image={p}
                   />
@@ -93,7 +113,7 @@ function PhotoContainer() {
             visibility: { lg: "hidden" },
             cursor: "pointer",
           }}
-          onClick={previousPosition}
+          onClick={previousPhoto}
         >
           <CardMedia
             sx={{
@@ -114,7 +134,7 @@ function PhotoContainer() {
             visibility: { lg: "hidden" },
             cursor: "pointer",
           }}
-          onClick={nextPosition}
+          onClick={nextPhoto}
         >
           <CardMedia
             sx={{ height: "18px", width: "18px" }}
@@ -122,6 +142,12 @@ function PhotoContainer() {
           />
         </Box>
       </Box>
+      {showLightBox && (
+        <LightBox
+          selectedImage={bigPhotos[focusedPhotoIndex]}
+          closeLightBox={() => setShowLightBox(false)} // Agrega esta prop
+        />
+      )}
     </>
   );
 }

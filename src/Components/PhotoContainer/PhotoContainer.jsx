@@ -120,7 +120,7 @@ function PhotoContainer() {
               height: "18px",
               width: "18px",
             }}
-            image="/images/icon-previous.svg"
+            image="../../../public/icon-previous.svg"
           />
         </Box>
         <Box
@@ -138,7 +138,7 @@ function PhotoContainer() {
         >
           <CardMedia
             sx={{ height: "18px", width: "18px" }}
-            image="/images/icon-next.svg"
+            image="../../../public/icon-next.svg"
           />
         </Box>
       </Box>

@@ -14,8 +14,6 @@ function QuantityButton() {
     quantity !== 0 ? setQuantity(quantity - 1) : null
   }
   
-  
-
   return (
     <>
       <Box
@@ -32,7 +30,7 @@ function QuantityButton() {
         }}
       >
         <CardMedia
-          image="../images/icon-minus.svg"
+           image="../../../public/icon-minus.svg"
           sx={{ width: "18px", height: "6px", marginLeft: "30px", cursor:"pointer"}}
           onClick={lessQuantity}
         />
@@ -40,7 +38,7 @@ function QuantityButton() {
           {quantity}
         </Typography>
         <CardMedia
-          image="../images/icon-plus.svg"
+           image="../../../public/icon-plus.svg"
           sx={{ width: "18px", height: "16px", marginRight: "30px", cursor:"pointer"}}
           onClick={plusQuantity}
         />

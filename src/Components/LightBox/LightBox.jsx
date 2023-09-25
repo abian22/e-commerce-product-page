@@ -70,7 +70,7 @@ function LightBox({ selectedImage, closeLightBox }) {
               cursor: "pointer",
             }}
             onClick={handleCloseLightBox}
-            image="../../../images/icon-close.svg"
+            image="../../../public/icon-close.svg"
           />
           <CardMedia
             sx={{
@@ -152,7 +152,7 @@ function LightBox({ selectedImage, closeLightBox }) {
                 height: "18px",
                 width: "18px",
               }}
-              image="/images/icon-previous.svg"
+              image="../../../public/icon-previous.svg"
             />
           </Box>
           <Box
@@ -169,7 +169,7 @@ function LightBox({ selectedImage, closeLightBox }) {
           >
             <CardMedia
               sx={{ height: "18px", width: "18px" }}
-              image="/images/icon-next.svg"
+              image="../../../public/icon-next.svg"
             />
           </Box>
         </Box>

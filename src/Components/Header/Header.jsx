@@ -2,8 +2,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import profile from "../../../images/image-avatar.png";
-import cartIcon from "../../../images/icon-cart.svg"; 
+import profile from "../../../public/images/image-avatar.png";
+import cartIcon from "../../../public/images/icon-cart.svg"; 
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -50,7 +50,7 @@ function Header() {
             marginRight: { lg: "20px" },
             position: { lg: "absolute" },
           }}
-          image="../../../images/logo.svg"
+          image="../../../public/images/logo.svg"
         />
         <Box
           sx={{

@@ -70,7 +70,7 @@ function LightBox({ selectedImage, closeLightBox }) {
               cursor: "pointer",
             }}
             onClick={handleCloseLightBox}
-            image="../../../public/icon-close.svg"
+            image="../../../public/images/icon-close.svg"
           />
           <CardMedia
             sx={{

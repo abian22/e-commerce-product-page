@@ -25,19 +25,19 @@ function PhotoContainer() {
   function nextPhoto() {
     if (focusedPhotoIndex < bigPhotos.length - 1) {
       setFocusedPhotoIndex(focusedPhotoIndex + 1);
-      setClickedPhoto(true); // Activa el estilo en la smallphoto actual
+      setClickedPhoto(true); 
     }
   }
 
   function previousPhoto() {
     if (focusedPhotoIndex > 0) {
       setFocusedPhotoIndex(focusedPhotoIndex - 1);
-      setClickedPhoto(true); // Activa el estilo en la smallphoto actual
+      setClickedPhoto(true); 
     }
   }
 
   function handleSmallPhotoClick(index) {
-    setClickedPhoto(true); // Activa el estilo en la smallphoto actual
+    setClickedPhoto(true); 
     setFocusedPhotoIndex(index);
   }
 

@@ -161,7 +161,7 @@ function Header({ quantity }) {
                   Fall Limited Edition Sneakers
                 </Typography>
                 <CardMedia
-                  image="../../../public/images/icon-close.svg"
+                  image="/images/icon-close.svg"
                   sx={{
                     width: "10px",
                     height: "10px",

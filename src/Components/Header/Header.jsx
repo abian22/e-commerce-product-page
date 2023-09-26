@@ -148,7 +148,7 @@ function Header({ quantity }) {
                 }}
               >
                 <CardMedia
-                  image={"../../../public/images/image-product-1.jpg"}
+                  image={"/images/image-product-1.jpg"}
                   sx={{ width: "100px", height: "100px", marginBottom: "10px" }}
                 />
                 <Typography

@@ -1,7 +1,9 @@
 import React from 'react'
+import Header from '../Header/Header';
 import { Box, CardMedia, Typography } from "@mui/material";
 
-function AddToCartButton() {
+function AddToCartButton({ onClick }) {
+
   return (
     <>
     <Box
@@ -21,9 +23,10 @@ function AddToCartButton() {
             bottom:{lg:"155px"},
             marginRight:{lg:"70px"},
             left:{lg:"900px"},
-            boxShadow: "0px 30px 20px hsl(25, 100%, 94%)" 
-            
+            boxShadow: "0px 30px 20px hsl(25, 100%, 94%)",
+            cursor:"pointer"
           }}
+          onClick={onClick}
         >
           <CardMedia
             image="../images/icon-whitecart.svg"

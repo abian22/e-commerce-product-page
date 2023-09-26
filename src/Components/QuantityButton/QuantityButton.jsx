@@ -2,16 +2,19 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { CardMedia } from "@mui/material";
 import { useState } from "react";
+import AddToCartButton from "../AddToCartButton/AddToCartButton"
 
 function QuantityButton() {
   const [quantity, setQuantity] = useState(0);
 
   function plusQuantity() {
-    setQuantity(quantity + 1)
+    setQuantity(quantity + 1);
   }
 
   function lessQuantity() {
-    quantity !== 0 ? setQuantity(quantity - 1) : null
+    if (quantity !== 0) {
+      setQuantity(quantity - 1);
+    }
   }
   
   return (
@@ -42,6 +45,9 @@ function QuantityButton() {
           sx={{ width: "18px", height: "16px", marginRight: "30px", cursor:"pointer"}}
           onClick={plusQuantity}
         />
+      </Box>
+      <Box sx={{display:"none"}}>
+        <AddToCartButton quantity={quantity}/>
       </Box>
     </>
   );

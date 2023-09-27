@@ -9,9 +9,11 @@ import { useState } from "react";
 import "./LightBox.css";
 
 function LightBox({ selectedImageIndex, closeLightBox, bigPhotos }) {
-  const [focusedPhotoIndex, setFocusedPhotoIndex] = useState(selectedImageIndex);
+  const [focusedPhotoIndex, setFocusedPhotoIndex] =
+    useState(selectedImageIndex);
   const [close, setClose] = useState(false);
-  const [clickedPhotoIndex, setClickedPhotoIndex] = useState(selectedImageIndex); 
+  const [clickedPhotoIndex, setClickedPhotoIndex] =
+    useState(selectedImageIndex);
   const smallPhotos = [image1Mini, image2Mini, image3Mini, image4Mini];
 
   const isMdScreenOrSmaller = useMediaQuery("(max-width: 1200px)");
@@ -25,20 +27,20 @@ function LightBox({ selectedImageIndex, closeLightBox, bigPhotos }) {
   const nextPhoto = () => {
     if (focusedPhotoIndex < bigPhotos.length - 1) {
       setFocusedPhotoIndex(focusedPhotoIndex + 1);
-      setClickedPhotoIndex(focusedPhotoIndex + 1); 
+      setClickedPhotoIndex(focusedPhotoIndex + 1);
     }
   };
 
   const previousPhoto = () => {
     if (focusedPhotoIndex > 0) {
       setFocusedPhotoIndex(focusedPhotoIndex - 1);
-      setClickedPhotoIndex(focusedPhotoIndex - 1); 
+      setClickedPhotoIndex(focusedPhotoIndex - 1);
     }
   };
 
   function handleSmallPhotoClick(index) {
     setFocusedPhotoIndex(index);
-    setClickedPhotoIndex(index); 
+    setClickedPhotoIndex(index);
   }
 
   const handleCloseLightBox = () => {
@@ -48,6 +50,19 @@ function LightBox({ selectedImageIndex, closeLightBox, bigPhotos }) {
 
   return (
     <>
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          position: "fixed",
+          top: "0px",
+          left: "0px",
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+          zIndex: "1",
+        }}
+        onClick={handleCloseLightBox}
+      ></Box>
+
       <Box
         className="centered-container"
         style={{ display: close ? "none" : "relative" }}

@@ -9,7 +9,7 @@ import { useState } from "react";
 import "./LightBox.css";
 
 function LightBox({ selectedImageIndex, closeLightBox, bigPhotos }) {
-  const [focusedPhotoIndex, setFocusedPhotoIndex] =useState(selectedImageIndex);
+  const [focusedPhotoIndex, setFocusedPhotoIndex] = useState(selectedImageIndex);
   const [close, setClose] = useState(false);
   const [clickedPhotoIndex, setClickedPhotoIndex] = useState(selectedImageIndex); 
   const smallPhotos = [image1Mini, image2Mini, image3Mini, image4Mini];

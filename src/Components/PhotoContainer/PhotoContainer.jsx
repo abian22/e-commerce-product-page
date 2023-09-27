@@ -25,19 +25,19 @@ function PhotoContainer() {
   function nextPhoto() {
     if (focusedPhotoIndex < bigPhotos.length - 1) {
       setFocusedPhotoIndex(focusedPhotoIndex + 1);
-      setClickedPhoto(true); 
+      setClickedPhoto(true);
     }
   }
 
   function previousPhoto() {
     if (focusedPhotoIndex > 0) {
       setFocusedPhotoIndex(focusedPhotoIndex - 1);
-      setClickedPhoto(true); 
+      setClickedPhoto(true);
     }
   }
 
   function handleSmallPhotoClick(index) {
-    setClickedPhoto(true); 
+    setClickedPhoto(true);
     setFocusedPhotoIndex(index);
   }
 

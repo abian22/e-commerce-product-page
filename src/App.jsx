@@ -1,20 +1,18 @@
-import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Header from "./Components/Header/Header";
 import PhotoContainer from "./Components/PhotoContainer/PhotoContainer";
 import TextAndPriceContainer from "./Components/TextAndPriceContainer/TextAndPriceContainer";
-import QuantityButton from "./Components/QuantityButton/QuantityButton";
 import AddToCartButton from "./Components/AddToCartButton/AddToCartButton";
 import LightBox from "./Components/LightBox/LightBox";
 import { Box, CardMedia, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
   const [showLightBox, setShowLightBox] = useState(false);
-  const [totalQuantity, setTotalQuantity] = useState(0);
   const [quantity, setQuantity] = useState(0);
-  const [clickedAddToCart, setClickedAddToCart] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [newItems, setNewItems] = useState(0);
 
   function plusQuantity() {
     setQuantity(quantity + 1);
@@ -27,14 +25,29 @@ function App() {
   }
 
   const handleAddToCartClick = () => {
-    setTotalQuantity(quantity);
-    setClickedAddToCart(true);
+    if (quantity > 0) {
+      const updatedCart = [...cartItems];
+      for (let i = 0; i < quantity; i++) {
+        updatedCart.push(i);
+      }
+      setCartItems(updatedCart);
+      setNewItems((currentNewItems) => currentNewItems + quantity);
+      setQuantity(0);
+    }
   };
 
+  const resetNewItems = () => {
+    setNewItems(0);
+  };
+  console.log(newItems);
   return (
     <>
       <Grid>
-        <Header quantity={totalQuantity !== 0 ? totalQuantity : null} />
+        <Header
+          cartItems={cartItems !== 0 ? cartItems : null}
+          newItems={newItems}
+          resetNewItems={resetNewItems}
+        />
         <Box sx={{ display: { lg: "flex" }, flexDirection: { lg: "row" } }}>
           <PhotoContainer />
           <TextAndPriceContainer />

@@ -6,26 +6,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import profile from "/images/image-avatar.png";
 import cartIcon from "/images/icon-cart.svg";
 import { Box, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function Header({ quantity }) {
+function Header({ cartItems, newItems, resetNewItems }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartList, setCartList] = useState([]);
+  const [cardsToClose, setCardsToClose] = useState([]);
 
   const menu = ["Collections", "Men", "Women", "About", "Contact"];
-
-  console.log(quantity);
-
-  useEffect(() => {
-    const newCartList = [];
-    for (let i = 0; i < quantity; i++) {
-      newCartList.push("0");
-    }
-    setCartList(newCartList);
-  }, [quantity]);
-
-  console.log(cartList);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -33,10 +21,15 @@ function Header({ quantity }) {
 
   const toggleCart = () => {
     setCartOpen(!cartOpen);
+    resetNewItems();
   };
 
-  const closeCart = () => {
-    setCartOpen(false);
+  const closeCart = (index) => {
+    if (cardsToClose.includes(index)) {
+      setCardsToClose(cardsToClose.filter((i) => i !== index));
+    } else {
+      setCardsToClose([...cardsToClose, index]);
+    }
   };
 
   return (
@@ -51,6 +44,7 @@ function Header({ quantity }) {
           borderColor: { lg: "lightgrey" },
           paddingBottom: { lg: "40px" },
           marginLeft: { lg: "100px" },
+          marginTop: "20px",
         }}
       >
         <IconButton
@@ -116,10 +110,30 @@ function Header({ quantity }) {
               display: "inline",
               marginTop: "8px",
               cursor: "pointer",
+              zIndex: "999",
             }}
             onClick={toggleCart}
             image={cartIcon}
           />
+          {newItems > 0 && (
+            <Box
+              sx={{
+                width: "20px",
+                height: "20px",
+                border: "solid",
+                borderRadius: "10px",
+                textAlign: "center",
+                fontFamily: "bold",
+                color: "white",
+                backgroundColor: "red",
+                position: "absolute",
+                marginRight: "80px",
+                top: "10px",
+              }}
+            >
+              {newItems}
+            </Box>
+          )}
           <Avatar src={profile} sx={{ marginLeft: "40px" }} />
         </Box>
       </Box>
@@ -130,15 +144,17 @@ function Header({ quantity }) {
             maxHeight: "380px",
             overflowY: "auto",
             position: "absolute",
-            right: { xs: "20px", lg: "200px" },
+            right: { xs: "20px", lg: "90px" },
+            zIndex: "2",
           }}
         >
-          {cartList.map((item, index) => (
+          {cartItems.map((item, index) => (
             <Card
               key={index}
               sx={{
                 width: "100%",
                 marginBottom: "10px",
+                display: cardsToClose.includes(index) ? "none" : "block",
               }}
             >
               <Box
@@ -169,7 +185,7 @@ function Header({ quantity }) {
                     marginLeft: "25px",
                     cursor: "pointer",
                   }}
-                  onClick={closeCart}
+                  onClick={() => closeCart(index)}
                 />
               </Box>
             </Card>
